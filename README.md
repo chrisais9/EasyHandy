@@ -22,32 +22,17 @@
 - [통합테스트](보고서/통합테스트.md)
 - [테스트보고서](보고서/테스트보고서.md)
 
-
-## Prerequisites
-
-
-
-### Install List
+## Install List
 
  - Python `3.8.0`
- 
- ```
-pip install scrapy
+ - OpenCV 
+
 ```
- - 🔥IMPORTANT🔥 Crawled data must be colleted using [truyenfull_crawler](https://github.com/hatttruong/crawler-webpage/tree/master/truyenfull_crawler) in order to use this program 
+pip install 
+```
+ 
+---
+## 게임들
+- 가위바위보
+- 수화 배우기
 
-## USAGE (사용방법)
-
- 1. Copy crawled .csv files to 'chapter'
- 2. run!
- 3. result will be saved into WordFrequency Folder
-------------------------
-# Result
-자동 내림차순 정렬
-
-| 단어 | 빈도수 | 
-| ------ | ------ | 
-| Sở | 86 
-| không | 56
-| Phiên | 55
-| ... | ...
