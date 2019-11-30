@@ -1,16 +1,16 @@
 <h1 align="center">
   <br>
-  <img src="https://i.ytimg.com/vi/DJjqqFM3ndc/maxresdefault.jpg" alt="Markdownify" width="200"></a>
+  <img src="https://is3-ssl.mzstatic.com/image/thumb/Purple113/v4/7e/ef/16/7eef161f-1ccf-f6e7-f20f-836ace2b1081/pr_source.png/320x0w.png" alt="Markdownify" width="200"></a>
   <br>
-  MoniGame
+  Easy Handy
   <br>
 </h1>
 
-<h4 align="center">🎰Motion Recognition + MiniGame 🚀</h4>
+<h4 align="center">🎰Learn sign languge easily! 🚀</h4>
 
-## What is MoniGame?
-마우스와 키보드로만 딸각 거리는 게임 이제는 <b>NO!</b>  
-다양한 미니게임을 직접 <b>손과 몸짓</b> 을 이용하여 할 수 있도록 만들었습니다.
+## What is EasyHandy?
+듣지못하는 청각 장애인 분들과 소통 하는 방법중 가장 대표적인 수화 🤙.  
+직접 동영상을 시청하며 수화를 배울수 있으며, 당신의 손 모양이 올바른지 자동으로 인식해줍니다!
 
 ## 보고서
 다음은 보고서 입니다. 프로그램에 대한 전반적인 설계와 명세가 들어가 있습니다.
@@ -32,7 +32,4 @@ pip install
 ```
  
 ---
-## 게임들
-- 가위바위보
-- 수화 배우기
 
