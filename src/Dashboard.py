@@ -222,32 +222,6 @@ class Dashboard(QtWidgets.QMainWindow):
         super(Dashboard, self).__init__()
         self.setWindowFlags(
             QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint | QtCore.Qt.FramelessWindowHint)
-        # cap = cv2.VideoCapture('gestfinal2.min.mp4')
-        #
-        # # Read until video is completed
-        # while (cap.isOpened()):
-        #     ret, frame = cap.read()
-        #     print(ret)
-        #     if ret == True:
-        #         # Capture frame-by-frame
-        #         ret, frame = cap.read()
-        #         cv2.namedWindow("mask", cv2.WINDOW_NORMAL)
-        #         cv2.imshow("mask", frame)
-        #         cv2.setWindowProperty("mask", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
-        #         cv2.resizeWindow("mask", 720, 400)
-        #         cv2.moveWindow("mask", 320, 220)
-        #
-        #         if cv2.waitKey(1) & 0xFF == ord('q'):
-        #             break
-        #
-        #     else:
-        #         break
-        #
-        # # When everything done, release
-        # cap.release()
-        #
-        # # Closes all the frames
-        # cv2.destroyAllWindows()
         self.setWindowIcon(QtGui.QIcon('icons/windowLogo.png'))
         self.title = 'Sign language Recognition'
         uic.loadUi('UI_Files/dash.ui', self)
