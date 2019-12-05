@@ -36,12 +36,12 @@
 - pillow
 
 > 💡 **NOTE: you must install OpenCV `3.4.2.16` due to some functions deprecated in latest version.**
-```
-Installing opencv for python with the following commands
+  ```
+  Installing opencv for python with the following commands
 
-pip install opencv-python==3.4.2.16
+  pip install opencv-python==3.4.2.16
 
-pip install opencv-contrib-python==3.4.2.16
-```
+  pip install opencv-contrib-python==3.4.2.16
+  ```
 
 
