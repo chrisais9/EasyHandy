@@ -24,12 +24,24 @@
 
 ## Install List
 
- - Python `3.8.0`
- - OpenCV 
+- Python `3.7.0`
+- OpenCV `3.4.2.16`
+- pyqt5, tkinter
+- keyboard
+- tensorflow
+- keras
+- scipy
+- qimage2ndarray
+- keras
+- pillow
 
+> 💡 **NOTE: you must install OpenCV `3.4.2.16` due to some functions deprecated in latest version.**
 ```
-pip install 
+Installing opencv for python with the following commands
+
+pip install opencv-python==3.4.2.16
+
+pip install opencv-contrib-python==3.4.2.16
 ```
- 
----
+
 
