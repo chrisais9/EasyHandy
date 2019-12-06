@@ -13,6 +13,15 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>30</width>
+    <height>30</height>
+   </size>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -40,7 +49,7 @@
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_imageView">
+   <widget class="QLabel" name="label_tutorialView">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -72,19 +81,6 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_a">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>380</y>
-      <width>60</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
@@ -101,11 +97,17 @@
    <widget class="QPushButton" name="button_B">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>410</y>
+      <x>80</x>
+      <y>380</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -114,11 +116,17 @@
    <widget class="QPushButton" name="button_C">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>410</y>
+      <x>130</x>
+      <y>380</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -127,11 +135,17 @@
    <widget class="QPushButton" name="button_D">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>410</y>
+      <x>180</x>
+      <y>380</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -140,11 +154,17 @@
    <widget class="QPushButton" name="button_F">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>410</y>
+      <x>280</x>
+      <y>380</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -153,11 +173,17 @@
    <widget class="QPushButton" name="button_E">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>410</y>
+      <x>230</x>
+      <y>380</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -166,11 +192,17 @@
    <widget class="QPushButton" name="button_G">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>410</y>
+      <x>330</x>
+      <y>380</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -179,11 +211,17 @@
    <widget class="QPushButton" name="button_H">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>410</y>
+      <x>380</x>
+      <y>380</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -192,11 +230,17 @@
    <widget class="QPushButton" name="button_I">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>410</y>
+      <x>430</x>
+      <y>380</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -205,11 +249,17 @@
    <widget class="QPushButton" name="button_Q">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>460</y>
+      <x>80</x>
+      <y>430</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -218,11 +268,17 @@
    <widget class="QPushButton" name="button_S">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>460</y>
+      <x>180</x>
+      <y>430</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -231,11 +287,17 @@
    <widget class="QPushButton" name="button_R">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>460</y>
+      <x>130</x>
+      <y>430</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -244,11 +306,17 @@
    <widget class="QPushButton" name="button_P">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>460</y>
+      <x>30</x>
+      <y>430</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -257,11 +325,17 @@
    <widget class="QPushButton" name="button_J">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>410</y>
+      <x>480</x>
+      <y>380</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -270,11 +344,17 @@
    <widget class="QPushButton" name="button_L">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>410</y>
+      <x>580</x>
+      <y>380</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -283,11 +363,17 @@
    <widget class="QPushButton" name="button_K">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>410</y>
+      <x>530</x>
+      <y>380</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -296,11 +382,17 @@
    <widget class="QPushButton" name="button_N">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>410</y>
+      <x>680</x>
+      <y>380</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -309,11 +401,17 @@
    <widget class="QPushButton" name="button_M">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>410</y>
+      <x>630</x>
+      <y>380</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -322,11 +420,17 @@
    <widget class="QPushButton" name="button_Y">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>460</y>
+      <x>480</x>
+      <y>430</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -335,11 +439,17 @@
    <widget class="QPushButton" name="button_X">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>460</y>
+      <x>430</x>
+      <y>430</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -348,11 +458,17 @@
    <widget class="QPushButton" name="button_W">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>460</y>
+      <x>380</x>
+      <y>430</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -361,11 +477,17 @@
    <widget class="QPushButton" name="button_V">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>460</y>
+      <x>330</x>
+      <y>430</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -374,11 +496,17 @@
    <widget class="QPushButton" name="button_U">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>460</y>
+      <x>280</x>
+      <y>430</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -387,11 +515,17 @@
    <widget class="QPushButton" name="button_T">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>460</y>
+      <x>230</x>
+      <y>430</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -400,11 +534,17 @@
    <widget class="QPushButton" name="button_O">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>410</y>
+      <x>730</x>
+      <y>380</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -413,11 +553,17 @@
    <widget class="QPushButton" name="button_A">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>410</y>
+      <x>30</x>
+      <y>380</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -426,11 +572,17 @@
    <widget class="QPushButton" name="button_Z">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>460</y>
+      <x>530</x>
+      <y>430</y>
       <width>50</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
     </property>
     <property name="text">
      <string/>
@@ -439,8 +591,7 @@
    <zorder>label_imageView_2</zorder>
    <zorder>label</zorder>
    <zorder>label_2</zorder>
-   <zorder>label_imageView</zorder>
-   <zorder>label_a</zorder>
+   <zorder>label_tutorialView</zorder>
    <zorder>widget</zorder>
    <zorder>button_B</zorder>
    <zorder>button_C</zorder>
