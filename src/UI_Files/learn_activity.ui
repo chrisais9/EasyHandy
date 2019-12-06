@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>803</width>
     <height>600</height>
    </rect>
   </property>
@@ -17,8 +17,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>400</y>
+      <x>460</x>
+      <y>520</y>
       <width>60</width>
       <height>16</height>
      </rect>
@@ -30,8 +30,8 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>470</y>
+      <x>650</x>
+      <y>520</y>
       <width>60</width>
       <height>16</height>
      </rect>
@@ -43,10 +43,10 @@
    <widget class="QLabel" name="label_imageView">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>20</y>
-      <width>360</width>
-      <height>270</height>
+      <x>10</x>
+      <y>10</y>
+      <width>301</width>
+      <height>191</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -56,13 +56,47 @@
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="label_imageView_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>801</width>
+      <height>371</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(180,180,180,0.6);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_a">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>400</y>
+      <width>60</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <zorder>label_imageView_2</zorder>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_imageView</zorder>
+   <zorder>label_a</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>803</width>
      <height>22</height>
     </rect>
    </property>
