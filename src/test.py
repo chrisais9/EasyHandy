@@ -1,81 +1,63 @@
 import cv2
+import threading
+import sys
+from PyQt5 import QtWidgets
+from PyQt5 import QtGui
+from PyQt5 import QtCore
 
+running = False
+def run():
+    global running
+    cap = cv2.VideoCapture(-1)
+    width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
+    height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
+    label.resize(width, height)
+    while running:
+        ret, img = cap.read()
+        if ret:
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            h,w,c = img.shape
+            qImg = QtGui.QImage(img.data, w, h, w*c, QtGui.QImage.Format_RGB888)
+            pixmap = QtGui.QPixmap.fromImage(qImg)
+            label.setPixmap(pixmap)
+        else:
+            QtWidgets.QMessageBox.about(win, "Error", "Cannot read frame.")
+            print("cannot read frame.")
+            break
+    cap.release()
+    print("Thread end.")
 
-class MotionDetectorContour:
-    def __init__(self, ceil=15):
-        self.ceil = ceil
-        self.capture = cv2.VideoCapture(0)
-        cv2.NamedWindow("Target", 1)
+def stop():
+    global running
+    running = False
+    print("stoped..")
 
-    def run(self):
-        # Capture first frame to get size
-        frame = cv.QueryFrame(self.capture)
-        frame_size = cv.GetSize(frame)
+def start():
+    global running
+    running = True
+    th = threading.Thread(target=run)
+    th.start()
+    print("started..")
 
-        width = frame.width
-        height = frame.height
-        surface = width * height  # Surface area of the image
-        cursurface = 0  # Hold the current surface that have changed
+def onExit():
+    print("exit")
+    stop()
 
-        grey_image = cv2.CreateImage(cv.GetSize(frame), cv.IPL_DEPTH_8U, 1)
-        moving_average = cv.CreateImage(cv.GetSize(frame), cv.IPL_DEPTH_32F, 3)
-        difference = None
+app = QtWidgets.QApplication([])
+win = QtWidgets.QWidget()
+vbox = QtWidgets.QVBoxLayout()
+label = QtWidgets.QLabel()
+btn_start = QtWidgets.QPushButton("Camera On")
+btn_stop = QtWidgets.QPushButton("Camera Off")
+vbox.addWidget(label)
+vbox.addWidget(btn_start)
+vbox.addWidget(btn_stop)
+win.setLayout(vbox)
+win.show()
 
-        while True:
-            color_image = cv.QueryFrame(self.capture)
+btn_start.clicked.connect(start)
+btn_stop.clicked.connect(stop)
+app.aboutToQuit.connect(onExit)
 
-            cv.Smooth(color_image, color_image, cv.CV_GAUSSIAN, 3, 0)  # Remove false positives
+sys.exit(app.exec_())
 
-            if not difference:  # For the first time put values in difference, temp and moving_average
-                difference = cv.CloneImage(color_image)
-                temp = cv.CloneImage(color_image)
-                cv.ConvertScale(color_image, moving_average, 1.0, 0.0)
-            else:
-                cv.RunningAvg(color_image, moving_average, 0.020, None)  # Compute the average
-
-            # Convert the scale of the moving average.
-            cv.ConvertScale(moving_average, temp, 1.0, 0.0)
-
-            # Minus the current frame from the moving average.
-            cv.AbsDiff(color_image, temp, difference)
-
-            # Convert the image so that it can be thresholded
-            cv.CvtColor(difference, grey_image, cv.CV_RGB2GRAY)
-            cv.Threshold(grey_image, grey_image, 70, 255, cv.CV_THRESH_BINARY)
-
-            cv.Dilate(grey_image, grey_image, None, 18)  # to get object blobs
-            cv.Erode(grey_image, grey_image, None, 10)
-
-            # Find contours
-            storage = cv.CreateMemStorage(0)
-            contours = cv.FindContours(grey_image, storage, cv.CV_RETR_EXTERNAL, cv.CV_CHAIN_APPROX_SIMPLE)
-
-            backcontours = contours  # Save contours
-
-            while contours:  # For all contours compute the area
-                cursurface += cv.ContourArea(contours)
-                contours = contours.h_next()
-
-            avg = (cursurface * 100) / surface  # Calculate the average of contour area on the total size
-            if avg > self.ceil:
-                print("Something is moving !")
-            # print avg,"%"
-            cursurface = 0  # Put back the current surface to 0
-
-            # Draw the contours on the image
-            _red = (0, 0, 255)  # Red for external contours
-            _green = (0, 255, 0)  # Gren internal contours
-            levels = 1  # 1 contours drawn, 2 internal contours as well, 3 ...
-            cv.DrawContours(color_image, backcontours, _red, _green, levels, 2, cv.CV_FILLED)
-
-            cv.ShowImage("Target", color_image)
-
-            # Listen for ESC or ENTER key
-            c = cv.WaitKey(7) % 0x100
-            if c == 27 or c == 10:
-                break
-
-
-if __name__ == "__main__":
-    t = MotionDetectorContour()
-    t.run()

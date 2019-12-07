@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>803</width>
+    <width>800</width>
     <height>600</height>
    </rect>
   </property>
@@ -65,7 +65,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_imageView_2">
+   <widget class="QLabel" name="label_camView">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -588,7 +588,7 @@
      <string/>
     </property>
    </widget>
-   <zorder>label_imageView_2</zorder>
+   <zorder>label_camView</zorder>
    <zorder>label</zorder>
    <zorder>label_2</zorder>
    <zorder>label_tutorialView</zorder>
@@ -625,7 +625,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>803</width>
+     <width>800</width>
      <height>22</height>
     </rect>
    </property>

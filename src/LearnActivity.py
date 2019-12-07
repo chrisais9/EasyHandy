@@ -1,7 +1,10 @@
+import threading
+
+import cv2
 from PyQt5 import uic, QtWidgets, QtGui, QtCore
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import QSize
+from PyQt5.QtCore import QSize, pyqtSlot
 import sys
 import PyQt5
 
@@ -11,11 +14,15 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
 
         uic.loadUi('UI_Files/learn_activity.ui', self)
+        self.setWindowTitle('EasyHandy')
 
         """ 현재 모드를 나타냄 ( 모든 로직은 이 변수를 이용해서 처리 ex. mode = A -> 튜토리얼 사진 show 'A' """
         self.currentMode = 'A'
         """ OnFirstRun """
         self.notifyModeChanged(self.currentMode)
+        self.setTutorialButton()
+
+        self.video_thread(MainWindow)
 
         # label의 값을 조정하기위해서는 데이터 타입을 PyQt5.QtCore.QSize로 넘겨줘야 됨.
         # movie.setScaledSize(s) # PyQt5.QtCore.QSize(360, 270)로 넘겨줘도 됨.
@@ -26,6 +33,19 @@ class MainWindow(QMainWindow):
         # movie.start()
 
         # self.button_A = PicButton(QPixmap("./resource/alphabet/learn/A.png"))
+
+
+
+        # self.pushButton.setGeometry(0,0,300,300)
+        # self.widget.setIcon("./resource/alphabet/learn/A.png")
+
+        # QtGui.QIcon
+        # print(self.widget)
+        # print(type(self.widget))
+
+    # TODO: 버튼 나열된거 꼴뵈기 싫으니까 최적화 할 필요 있음 (상속해서 한 클래스로 만들기??)
+    @pyqtSlot()
+    def setTutorialButton(self):
         self.button_A.setIcon(QtGui.QIcon("./resource/alphabet/button/A.png"))
         self.button_A.setIconSize(QSize(30, 30))
         self.button_A.clicked.connect(self.alphabetButtonClicked)
@@ -130,13 +150,6 @@ class MainWindow(QMainWindow):
         self.button_Z.setIconSize(QSize(30, 30))
         self.button_Z.clicked.connect(self.alphabetButtonClicked)
 
-        # self.pushButton.setGeometry(0,0,300,300)
-        # self.widget.setIcon("./resource/alphabet/learn/A.png")
-
-        # QtGui.QIcon
-        # print(self.widget)
-        # print(type(self.widget))
-
     def alphabetButtonClicked(self):
         button = self.sender()
 
@@ -145,16 +158,48 @@ class MainWindow(QMainWindow):
         self.notifyModeChanged(objName[-1])
 
     """ 뷰 내의 모든 위젯은 이 함수를 호출해 Refresh 함 """
+
     def notifyModeChanged(self, modeName):
         self.currentMode = modeName
         self.loadTutorialImageFromMode()
         print('Mode Changed To {}'.format(self.currentMode))
 
     """ label_tutorialView 에 현재 모드에 맞는 튜토리얼 이미지 삽입 """
+
     def loadTutorialImageFromMode(self):
-        image = QPixmap("./resource/alphabet/learn/{}.png".format(self.currentMode))
-        image = image.scaled(300, 190)
-        self.label_tutorialView.setPixmap(image)
+        self.image = QPixmap("./resource/alphabet/learn/{}.png".format(self.currentMode))
+        self.image = self.image.scaled(300, 190)
+        self.label_tutorialView.setPixmap(self.image)
+
+    def Video_to_frame(self, MainWindow):
+        cap = cv2.VideoCapture(0)
+
+        while True:
+            self.ret, self.frame = cap.read()
+            if self.ret:
+                self.filpImage = cv2.flip(self.frame, 1)
+                self.rgbImage = cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB)
+                self.convertToQtFormat = QImage(self.rgbImage.data, self.rgbImage.shape[1], self.rgbImage.shape[0],
+                                                QImage.Format_RGB888)
+
+                self.pixmap = QPixmap(self.convertToQtFormat)
+                self.p = self.pixmap.scaled(800, 370, QtCore.Qt.IgnoreAspectRatio)
+
+                self.label_camView.setPixmap(self.p)
+                self.label_camView.update()
+
+
+            else:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
+
+    # video_to_frame을 쓰레드로 사용
+    def video_thread(self, MainWindow):
+        thread = threading.Thread(target=self.Video_to_frame, args=(self,))
+        thread.daemon = True  # 프로그램 종료시 프로세스도 함께 종료 (백그라운드 재생 X)
+        thread.start()
 
 
 app = QApplication([])
