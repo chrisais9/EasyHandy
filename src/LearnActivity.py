@@ -25,6 +25,12 @@ class MainWindow(QMainWindow):
 
         self.video_thread(MainWindow)
 
+        self.heightOfCamView = self.label_camView.height()
+        self.widthOfCamView = self.label_camView.width()
+
+        self.roiLeftTop = (500, 100)
+        self.roiRightBottom = (750, 300)
+
 
         # label의 값을 조정하기위해서는 데이터 타입을 PyQt5.QtCore.QSize로 넘겨줘야 됨.
         # movie.setScaledSize(s) # PyQt5.QtCore.QSize(360, 270)로 넘겨줘도 됨.
@@ -174,48 +180,26 @@ class MainWindow(QMainWindow):
     def Video_to_frame(self, MainWindow):
         cap = cv2.VideoCapture(0)
 
-        heightOfCamView = self.label_camView.height()
-        widthOfCamView = self.label_camView.width()
-
-        roiLeftTop = (500, 100)
-        roiRightBottom = (750, 300)
-        print(roiLeftTop)
-        print(roiRightBottom)
-
 
         while True:
             ret, frame = cap.read()
             if not ret:
                 break
 
-            # UI 에 보여질 프레임 처리
             frame = cv2.flip(frame, 1)
-            resizedImge = cv2.resize(frame, (widthOfCamView, heightOfCamView))
-            rgbImage = cv2.cvtColor(resizedImge, cv2.COLOR_BGR2RGB)
+            resizedImage = cv2.resize(frame, (self.widthOfCamView, self.heightOfCamView))
+
+            # 딥러닝 모델에 들어갈 프레임
+            self.saveToPredictor(resizedImage)
+
+            # UI 에 보여질 프레임 처리
+            rgbImage = cv2.cvtColor(resizedImage, cv2.COLOR_BGR2RGB)
             print(rgbImage.shape)
             # img1 = cv2.rectangle(rgbImage, (150, 50), (300, 200), (0, 255, 0), thickness=2, lineType=8, shift=0)
-            img1 = cv2.rectangle(rgbImage, roiLeftTop, roiRightBottom, (0, 255, 0), thickness=2, lineType=8, shift=0)
+            img1 = cv2.rectangle(rgbImage, self.roiLeftTop, self.roiRightBottom, (0, 255, 0), thickness=2, lineType=8, shift=0)
 
             h, w, c = img1.shape
             qImg = QImage(img1.data, w, h, c * w, QImage.Format_RGB888)
-
-            # 딥러닝 모델에 들어갈 프레임
-            roi = resizedImge[roiLeftTop[1]:roiRightBottom[1], roiLeftTop[0]:roiRightBottom[0]]
-            cv2.imwrite('test.png', roi)
-            # lower_blue = np.array([0, 0, 0])
-            # upper_blue = np.array([179, 255, 255])
-            #
-            # imcrop = frame[52:198, 152:298]
-            # hsv = cv2.cvtColor(imcrop, cv2.COLOR_BGR2HSV)
-            # mask = cv2.inRange(hsv, lower_blue, upper_blue)
-            #
-            # cv2.imshow("mask", mask)
-
-
-
-            # resFrame = cv2.resize(frame, (320, 270))
-
-            # scaledQImg = qImg.scaled(800, 370, QtCore.Qt.IgnoreAspectRatio)
 
             self.label_camView.setPixmap(QPixmap.fromImage(qImg))
             self.label_camView.update()
@@ -228,6 +212,19 @@ class MainWindow(QMainWindow):
         thread = threading.Thread(target=self.Video_to_frame, args=(self,))
         thread.daemon = True  # 프로그램 종료시 프로세스도 함께 종료 (백그라운드 재생 X)
         thread.start()
+
+    def saveToPredictor(self, frame):
+
+        lower_blue = np.array([0, 58, 50])
+        upper_blue = np.array([30, 255, 255])
+
+        # lower_blue = np.array([0, 10, 60])
+        # upper_blue = np.array([20, 150, 255])
+
+        imcrop = frame[self.roiLeftTop[1]:self.roiRightBottom[1], self.roiLeftTop[0]:self.roiRightBottom[0]]
+        hsv = cv2.cvtColor(imcrop, cv2.COLOR_BGR2HSV)
+        mask = cv2.inRange(hsv, lower_blue, upper_blue)
+        cv2.imwrite('test.png', mask)
 
 
 app = QApplication([])
