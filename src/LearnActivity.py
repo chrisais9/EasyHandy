@@ -1,4 +1,6 @@
+import os
 import threading
+import time
 
 import cv2
 import numpy as np
@@ -12,6 +14,106 @@ import time
 import sys
 import PyQt5
 
+from keras.models import load_model
+
+classifier = load_model('ASLModel.h5')  # loading the model
+
+
+
+def fileSearch():
+    fileEntry = []
+    for file in os.listdir("SampleGestures"):
+        if file.endswith(".png"):
+            fileEntry.append(file)
+    return fileEntry
+
+def predictor():
+    import numpy as np
+    from keras.preprocessing import image
+    test_image = image.load_img('1.png', target_size=(64, 64))
+    test_image = image.img_to_array(test_image)
+    test_image = np.expand_dims(test_image, axis=0)
+    result = classifier.predict(test_image)
+    gesname = ''
+    fileEntry = fileSearch()
+    for i in range(len(fileEntry)):
+        image_to_compare = cv2.imread("./SampleGestures/" + fileEntry[i])
+        original = cv2.imread("1.png")
+        sift = cv2.xfeatures2d.SIFT_create()
+        kp_1, desc_1 = sift.detectAndCompute(original, None)
+        kp_2, desc_2 = sift.detectAndCompute(image_to_compare, None)
+
+        index_params = dict(algorithm=0, trees=5)
+        search_params = dict()
+        flann = cv2.FlannBasedMatcher(index_params, search_params)
+
+        matches = flann.knnMatch(desc_1, desc_2, k=2)
+
+        good_points = []
+        ratio = 0.6
+        for m, n in matches:
+            if m.distance < ratio * n.distance:
+                good_points.append(m)
+        if (abs(len(good_points) + len(
+                matches)) > 20):
+            gesname = fileEntry[i]
+            gesname = gesname.replace('.png', '')
+            if (gesname == 'sp'):
+                gesname = ' '
+            return gesname
+
+    if result[0][0] == 1:
+        return 'A'
+    elif result[0][1] == 1:
+        return 'B'
+    elif result[0][2] == 1:
+        return 'C'
+    elif result[0][3] == 1:
+        return 'D'
+    elif result[0][4] == 1:
+        return 'E'
+    elif result[0][5] == 1:
+        return 'F'
+    elif result[0][6] == 1:
+        return 'G'
+    elif result[0][7] == 1:
+        return 'H'
+    elif result[0][8] == 1:
+        return 'I'
+    elif result[0][9] == 1:
+        return 'J'
+    elif result[0][10] == 1:
+        return 'K'
+    elif result[0][11] == 1:
+        return 'L'
+    elif result[0][12] == 1:
+        return 'M'
+    elif result[0][13] == 1:
+        return 'N'
+    elif result[0][14] == 1:
+        return 'O'
+    elif result[0][15] == 1:
+        return 'P'
+    elif result[0][16] == 1:
+        return 'Q'
+    elif result[0][17] == 1:
+        return 'R'
+    elif result[0][18] == 1:
+        return 'S'
+    elif result[0][19] == 1:
+        return 'T'
+    elif result[0][20] == 1:
+        return 'U'
+    elif result[0][21] == 1:
+        return 'V'
+    elif result[0][22] == 1:
+        return 'W'
+    elif result[0][23] == 1:
+        return 'X'
+    elif result[0][24] == 1:
+        return 'Y'
+    elif result[0][25] == 1:
+        return 'Z'
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -25,8 +127,6 @@ class MainWindow(QMainWindow):
         """ OnFirstRun """
         self.notifyModeChanged(self.currentMode)
         self.setTutorialButton()
-
-        self.video_thread(MainWindow)
 
         self.heightOfCamView = self.label_camView.height()
         self.widthOfCamView = self.label_camView.width()
@@ -189,7 +289,7 @@ class MainWindow(QMainWindow):
         self.image = self.image.scaled(300, 190)
         self.label_tutorialView.setPixmap(self.image)
 
-    def Video_to_frame(self, MainWindow):
+    def videoToFrame(self, MainWindow):
         cap = cv2.VideoCapture(0)
 
 
@@ -206,7 +306,6 @@ class MainWindow(QMainWindow):
 
             # UI 에 보여질 프레임 처리
             rgbImage = cv2.cvtColor(resizedImage, cv2.COLOR_BGR2RGB)
-            print(rgbImage.shape)
             # img1 = cv2.rectangle(rgbImage, (150, 50), (300, 200), (0, 255, 0), thickness=2, lineType=8, shift=0)
             img1 = cv2.rectangle(rgbImage, self.roiLeftTop, self.roiRightBottom, (0, 255, 0), thickness=2, lineType=8, shift=0)
 
@@ -219,11 +318,8 @@ class MainWindow(QMainWindow):
         cap.release()
         cv2.destroyAllWindows()
 
-    # video_to_frame을 쓰레드로 사용
-    def video_thread(self, MainWindow):
-        thread = threading.Thread(target=self.Video_to_frame, args=(self,))
-        thread.daemon = True  # 프로그램 종료시 프로세스도 함께 종료 (백그라운드 재생 X)
-        thread.start()
+
+
 
     def saveToPredictor(self, frame):
 
@@ -236,8 +332,27 @@ class MainWindow(QMainWindow):
         imcrop = frame[self.roiLeftTop[1]:self.roiRightBottom[1], self.roiLeftTop[0]:self.roiRightBottom[0]]
         hsv = cv2.cvtColor(imcrop, cv2.COLOR_BGR2HSV)
         mask = cv2.inRange(hsv, lower_blue, upper_blue)
-        cv2.imwrite('test.png', mask)
 
+        save_img = cv2.resize(mask, (64, 64))
+        cv2.imwrite('1.png', save_img)
+
+    # video_to_frame을 쓰레드로 사용
+    def video_thread(self, MainWindow):
+        thread = threading.Thread(target=self.videoToFrame, args=(self,))
+        thread.daemon = True  # 프로그램 종료시 프로세스도 함께 종료 (백그라운드 재생 X)
+        thread.start()
+
+
+def tensorProcess():
+    while True:
+        time.sleep(1)
+        print(predictor())
+
+# tensorflow를 쓰레드로 사용
+def predict_thread():
+    thread = threading.Thread(target=tensorProcess)
+    thread.daemon = True  # 프로그램 종료시 프로세스도 함께 종료 (백그라운드 재생 X)
+    thread.start()
 
 class External(QThread):
 
@@ -257,5 +372,7 @@ class External(QThread):
 app = QApplication([])
 window = MainWindow()
 window.show()
+
+tensorProcess()
 
 app.exec_()
