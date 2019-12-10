@@ -6,6 +6,9 @@ from PyQt5 import uic, QtWidgets, QtGui, QtCore
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QSize, pyqtSlot
+
+from PyQt5.QtCore import QThread, pyqtSignal
+import time
 import sys
 import PyQt5
 
@@ -31,6 +34,12 @@ class MainWindow(QMainWindow):
         self.roiLeftTop = (500, 100)
         self.roiRightBottom = (750, 300)
 
+        # 뷰 띄운 다음 바로재생
+        self.calc = External()
+        self.calc.countChanged.connect(self.onCountChanged)
+        self.calc.start()
+
+
 
         # label의 값을 조정하기위해서는 데이터 타입을 PyQt5.QtCore.QSize로 넘겨줘야 됨.
         # movie.setScaledSize(s) # PyQt5.QtCore.QSize(360, 270)로 넘겨줘도 됨.
@@ -48,6 +57,9 @@ class MainWindow(QMainWindow):
         # QtGui.QIcon
         # print(self.widget)
         # print(type(self.widget))
+
+    def onCountChanged(self, value):
+        self.progressBar.setValue(value)
 
     # TODO: 버튼 나열된거 꼴뵈기 싫으니까 최적화 할 필요 있음 (상속해서 한 클래스로 만들기??)
     @pyqtSlot()
@@ -226,6 +238,21 @@ class MainWindow(QMainWindow):
         mask = cv2.inRange(hsv, lower_blue, upper_blue)
         cv2.imwrite('test.png', mask)
 
+
+class External(QThread):
+
+    """
+    Runs a counter thread.
+    """
+    countChanged = pyqtSignal(int)
+
+    def run(self):
+        TIME_LIMIT = 100
+        count = 0
+        while count <= TIME_LIMIT:
+            count += 10
+            time.sleep(1)
+            self.countChanged.emit(count)
 
 app = QApplication([])
 window = MainWindow()

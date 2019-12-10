@@ -23,37 +23,11 @@
    </size>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>520</y>
-      <width>60</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>650</x>
-      <y>520</y>
-      <width>60</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_tutorialView">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>50</y>
       <width>301</width>
       <height>191</height>
      </rect>
@@ -69,7 +43,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
+      <y>40</y>
       <width>801</width>
       <height>371</height>
      </rect>
@@ -85,7 +59,7 @@
     <property name="geometry">
      <rect>
       <x>360</x>
-      <y>210</y>
+      <y>250</y>
       <width>120</width>
       <height>80</height>
      </rect>
@@ -98,13 +72,13 @@
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>380</y>
+      <y>420</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -117,13 +91,13 @@
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>380</y>
+      <y>420</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -136,13 +110,13 @@
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>380</y>
+      <y>420</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -155,13 +129,13 @@
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>380</y>
+      <y>420</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -174,13 +148,13 @@
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>380</y>
+      <y>420</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -193,13 +167,13 @@
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>380</y>
+      <y>420</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -212,13 +186,13 @@
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>380</y>
+      <y>420</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -231,13 +205,13 @@
     <property name="geometry">
      <rect>
       <x>430</x>
-      <y>380</y>
+      <y>420</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -250,13 +224,13 @@
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>430</y>
+      <y>470</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -269,13 +243,13 @@
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>430</y>
+      <y>470</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -288,13 +262,13 @@
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>430</y>
+      <y>470</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -307,13 +281,13 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>430</y>
+      <y>470</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -326,13 +300,13 @@
     <property name="geometry">
      <rect>
       <x>480</x>
-      <y>380</y>
+      <y>420</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -345,13 +319,13 @@
     <property name="geometry">
      <rect>
       <x>580</x>
-      <y>380</y>
+      <y>420</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -364,13 +338,13 @@
     <property name="geometry">
      <rect>
       <x>530</x>
-      <y>380</y>
+      <y>420</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -383,13 +357,13 @@
     <property name="geometry">
      <rect>
       <x>680</x>
-      <y>380</y>
+      <y>420</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -402,13 +376,13 @@
     <property name="geometry">
      <rect>
       <x>630</x>
-      <y>380</y>
+      <y>420</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -421,13 +395,13 @@
     <property name="geometry">
      <rect>
       <x>480</x>
-      <y>430</y>
+      <y>470</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -440,13 +414,13 @@
     <property name="geometry">
      <rect>
       <x>430</x>
-      <y>430</y>
+      <y>470</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -459,13 +433,13 @@
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>430</y>
+      <y>470</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -478,13 +452,13 @@
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>430</y>
+      <y>470</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -497,13 +471,13 @@
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>430</y>
+      <y>470</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -516,13 +490,13 @@
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>430</y>
+      <y>470</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -535,13 +509,13 @@
     <property name="geometry">
      <rect>
       <x>730</x>
-      <y>380</y>
+      <y>420</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -554,13 +528,13 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>380</y>
+      <y>420</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -573,13 +547,13 @@
     <property name="geometry">
      <rect>
       <x>530</x>
-      <y>430</y>
+      <y>470</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
@@ -588,9 +562,23 @@
      <string/>
     </property>
    </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>781</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+   </widget>
    <zorder>label_camView</zorder>
-   <zorder>label</zorder>
-   <zorder>label_2</zorder>
    <zorder>label_tutorialView</zorder>
    <zorder>widget</zorder>
    <zorder>button_B</zorder>
@@ -619,6 +607,7 @@
    <zorder>button_O</zorder>
    <zorder>button_A</zorder>
    <zorder>button_Z</zorder>
+   <zorder>progressBar</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
