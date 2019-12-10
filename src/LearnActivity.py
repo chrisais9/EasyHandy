@@ -8,6 +8,9 @@ from PyQt5 import uic, QtWidgets, QtGui, QtCore
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QSize, pyqtSlot
+
+from PyQt5.QtCore import QThread, pyqtSignal
+import time
 import sys
 import PyQt5
 
@@ -131,10 +134,10 @@ class MainWindow(QMainWindow):
         self.roiLeftTop = (500, 100)
         self.roiRightBottom = (750, 300)
 
-        self.video_thread(MainWindow)
-
-        # self.predict_thread(MainWindow)
-
+        # 뷰 띄운 다음 바로재생
+        self.calc = External()
+        self.calc.countChanged.connect(self.onCountChanged)
+        self.calc.start()
 
 
 
@@ -155,6 +158,8 @@ class MainWindow(QMainWindow):
         # print(self.widget)
         # print(type(self.widget))
 
+    def onCountChanged(self, value):
+        self.progressBar.setValue(value)
 
     # TODO: 버튼 나열된거 꼴뵈기 싫으니까 최적화 할 필요 있음 (상속해서 한 클래스로 만들기??)
     @pyqtSlot()
@@ -348,6 +353,21 @@ def predict_thread():
     thread = threading.Thread(target=tensorProcess)
     thread.daemon = True  # 프로그램 종료시 프로세스도 함께 종료 (백그라운드 재생 X)
     thread.start()
+
+class External(QThread):
+
+    """
+    Runs a counter thread.
+    """
+    countChanged = pyqtSignal(int)
+
+    def run(self):
+        TIME_LIMIT = 100
+        count = 0
+        while count <= TIME_LIMIT:
+            count += 10
+            time.sleep(1)
+            self.countChanged.emit(count)
 
 app = QApplication([])
 window = MainWindow()
