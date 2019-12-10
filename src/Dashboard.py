@@ -385,6 +385,7 @@ class Dashboard(QtWidgets.QMainWindow):
             # show image in img_label
             try:
                 self.label_3.setPixmap(QPixmap.fromImage(qImg1))
+
                 slider1 = self.trackbar.value()
             except:
                 pass

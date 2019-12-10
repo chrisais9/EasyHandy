@@ -1,6 +1,7 @@
 import threading
 
 import cv2
+import numpy as np
 from PyQt5 import uic, QtWidgets, QtGui, QtCore
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -24,6 +25,7 @@ class MainWindow(QMainWindow):
 
         self.video_thread(MainWindow)
 
+
         # label의 값을 조정하기위해서는 데이터 타입을 PyQt5.QtCore.QSize로 넘겨줘야 됨.
         # movie.setScaledSize(s) # PyQt5.QtCore.QSize(360, 270)로 넘겨줘도 됨.
         # self.label_3.setGeometry(0, 0, 780, 441) 아니면 이거 사용해도될듯.. 늦게 서야 봄..
@@ -33,8 +35,6 @@ class MainWindow(QMainWindow):
         # movie.start()
 
         # self.button_A = PicButton(QPixmap("./resource/alphabet/learn/A.png"))
-
-
 
         # self.pushButton.setGeometry(0,0,300,300)
         # self.widget.setIcon("./resource/alphabet/learn/A.png")
@@ -174,23 +174,48 @@ class MainWindow(QMainWindow):
     def Video_to_frame(self, MainWindow):
         cap = cv2.VideoCapture(0)
 
+        heightOfCamView = self.label_camView.height()
+        widthOfCamView = self.label_camView.width()
+
+        roiLeftTop = (200, 200)
+        roiRightBottom = (500, 500)
+        print(roiLeftTop)
+        print(roiRightBottom)
+
+
         while True:
-            self.ret, self.frame = cap.read()
-            if self.ret:
-                self.filpImage = cv2.flip(self.frame, 1)
-                self.rgbImage = cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB)
-                self.convertToQtFormat = QImage(self.rgbImage.data, self.rgbImage.shape[1], self.rgbImage.shape[0],
-                                                QImage.Format_RGB888)
-
-                self.pixmap = QPixmap(self.convertToQtFormat)
-                self.p = self.pixmap.scaled(800, 370, QtCore.Qt.IgnoreAspectRatio)
-
-                self.label_camView.setPixmap(self.p)
-                self.label_camView.update()
-
-
-            else:
+            ret, frame = cap.read()
+            if not ret:
                 break
+
+            # UI 에 보여질 프레임 처리
+            frame = cv2.flip(frame, 1)
+            resizedImge = cv2.resize(frame, (widthOfCamView, heightOfCamView))
+            rgbImage = cv2.cvtColor(resizedImge, cv2.COLOR_BGR2RGB)
+            print(rgbImage.shape)
+            # img1 = cv2.rectangle(rgbImage, (150, 50), (300, 200), (0, 255, 0), thickness=2, lineType=8, shift=0)
+            img1 = cv2.rectangle(rgbImage, roiLeftTop, roiRightBottom, (0, 255, 0), thickness=2, lineType=8, shift=0)
+            h, w, c = img1.shape
+            qImg = QImage(img1.data, w, h, c * w, QImage.Format_RGB888)
+
+            # 딥러닝 모델에 들어갈 프레임
+            # lower_blue = np.array([0, 0, 0])
+            # upper_blue = np.array([179, 255, 255])
+            #
+            # imcrop = frame[52:198, 152:298]
+            # hsv = cv2.cvtColor(imcrop, cv2.COLOR_BGR2HSV)
+            # mask = cv2.inRange(hsv, lower_blue, upper_blue)
+            #
+            # cv2.imshow("mask", mask)
+
+
+
+            # resFrame = cv2.resize(frame, (320, 270))
+
+            # scaledQImg = qImg.scaled(800, 370, QtCore.Qt.IgnoreAspectRatio)
+
+            self.label_camView.setPixmap(QPixmap.fromImage(qImg))
+            self.label_camView.update()
 
         cap.release()
         cv2.destroyAllWindows()
