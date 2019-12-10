@@ -19,13 +19,13 @@ from keras.models import load_model
 classifier = load_model('ASLModel.h5')  # loading the model
 
 
-
 def fileSearch():
     fileEntry = []
     for file in os.listdir("SampleGestures"):
         if file.endswith(".png"):
             fileEntry.append(file)
     return fileEntry
+
 
 def predictor():
     import numpy as np
@@ -115,6 +115,7 @@ def predictor():
     elif result[0][25] == 1:
         return 'Z'
 
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -134,12 +135,12 @@ class MainWindow(QMainWindow):
         self.roiLeftTop = (500, 100)
         self.roiRightBottom = (750, 300)
 
+        self.video_thread(MainWindow)
+
         # 뷰 띄운 다음 바로재생
         self.calc = External()
         self.calc.countChanged.connect(self.onCountChanged)
         self.calc.start()
-
-
 
         # label의 값을 조정하기위해서는 데이터 타입을 PyQt5.QtCore.QSize로 넘겨줘야 됨.
         # movie.setScaledSize(s) # PyQt5.QtCore.QSize(360, 270)로 넘겨줘도 됨.
@@ -292,7 +293,6 @@ class MainWindow(QMainWindow):
     def videoToFrame(self, MainWindow):
         cap = cv2.VideoCapture(0)
 
-
         while True:
             ret, frame = cap.read()
             if not ret:
@@ -307,7 +307,8 @@ class MainWindow(QMainWindow):
             # UI 에 보여질 프레임 처리
             rgbImage = cv2.cvtColor(resizedImage, cv2.COLOR_BGR2RGB)
             # img1 = cv2.rectangle(rgbImage, (150, 50), (300, 200), (0, 255, 0), thickness=2, lineType=8, shift=0)
-            img1 = cv2.rectangle(rgbImage, self.roiLeftTop, self.roiRightBottom, (0, 255, 0), thickness=2, lineType=8, shift=0)
+            img1 = cv2.rectangle(rgbImage, self.roiLeftTop, self.roiRightBottom, (0, 255, 0), thickness=2, lineType=8,
+                                 shift=0)
 
             h, w, c = img1.shape
             qImg = QImage(img1.data, w, h, c * w, QImage.Format_RGB888)
@@ -317,9 +318,6 @@ class MainWindow(QMainWindow):
 
         cap.release()
         cv2.destroyAllWindows()
-
-
-
 
     def saveToPredictor(self, frame):
 
@@ -348,14 +346,15 @@ def tensorProcess():
         time.sleep(1)
         print(predictor())
 
+
 # tensorflow를 쓰레드로 사용
 def predict_thread():
     thread = threading.Thread(target=tensorProcess)
     thread.daemon = True  # 프로그램 종료시 프로세스도 함께 종료 (백그라운드 재생 X)
     thread.start()
 
-class External(QThread):
 
+class External(QThread):
     """
     Runs a counter thread.
     """
@@ -369,10 +368,11 @@ class External(QThread):
             time.sleep(1)
             self.countChanged.emit(count)
 
+
 app = QApplication([])
 window = MainWindow()
 window.show()
 
-tensorProcess()
+# tensorProcess()
 
 app.exec_()
