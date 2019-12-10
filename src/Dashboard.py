@@ -47,36 +47,6 @@ def load_images_from_folder(folder):
     return images
 
 
-def toggle_imagesfwd(event):
-    img = load_images_from_folder('TempGest/')
-    global index
-
-    index += 1
-
-    try:
-        if index < len(img):
-            plt.axes()
-            plt.imshow(img[index])
-            plt.draw()
-    except:
-        pass
-
-
-def toggle_imagesrev(event):
-    img = load_images_from_folder('TempGest/')
-    global index
-
-    index -= 1
-
-    try:
-        if index < len(img) and index >= 0:
-            plt.axes()
-            plt.imshow(img[index])
-            plt.draw()
-    except:
-        pass
-
-
 def openimg():
     cv2.namedWindow("Image", cv2.WINDOW_NORMAL)
     image = cv2.imread('template.png')
