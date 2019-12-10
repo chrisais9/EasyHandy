@@ -177,8 +177,8 @@ class MainWindow(QMainWindow):
         heightOfCamView = self.label_camView.height()
         widthOfCamView = self.label_camView.width()
 
-        roiLeftTop = (200, 200)
-        roiRightBottom = (500, 500)
+        roiLeftTop = (500, 100)
+        roiRightBottom = (750, 300)
         print(roiLeftTop)
         print(roiRightBottom)
 
@@ -195,10 +195,13 @@ class MainWindow(QMainWindow):
             print(rgbImage.shape)
             # img1 = cv2.rectangle(rgbImage, (150, 50), (300, 200), (0, 255, 0), thickness=2, lineType=8, shift=0)
             img1 = cv2.rectangle(rgbImage, roiLeftTop, roiRightBottom, (0, 255, 0), thickness=2, lineType=8, shift=0)
+
             h, w, c = img1.shape
             qImg = QImage(img1.data, w, h, c * w, QImage.Format_RGB888)
 
             # 딥러닝 모델에 들어갈 프레임
+            roi = resizedImge[roiLeftTop[1]:roiRightBottom[1], roiLeftTop[0]:roiRightBottom[0]]
+            cv2.imwrite('test.png', roi)
             # lower_blue = np.array([0, 0, 0])
             # upper_blue = np.array([179, 255, 255])
             #
