@@ -19,6 +19,7 @@ from tensorflow.keras.models import load_model
 classifier = load_model('ASLModel.h5')  # loading the model
 currentMode = 'A'
 recognizedResult = 'Z'
+count = 0
 
 def fileSearch():
     fileEntry = []
@@ -144,19 +145,22 @@ class MainWindow(QMainWindow):
 
         self.video_thread(MainWindow)
 
+        self.playProgress()
+
+
+    def playProgress(self):
         # 뷰 띄운 다음 바로재생
         self.progressBarThread = ProgressThread()
-
         # 이벤트 설정
         self.progressBarThread.countChanged.connect(self.onCountChanged)
         self.progressBarThread.start()
 
-
-
+    # count 값이 변경 될때 마다 호출.
     def onCountChanged(self, value):
         self.progressBar.setValue(value)
         if value == 100:
             self.showCheckMark()
+
 
     def showCheckMark(self):
         height = self.label_checkmark.height()
@@ -164,6 +168,14 @@ class MainWindow(QMainWindow):
         pixmap = QPixmap("./resource/UI/checkmark.png")
         pixmap = pixmap.scaled(width, height, QtCore.Qt.KeepAspectRatio)
         self.label_checkmark.setPixmap(pixmap)
+
+    def hideCheckMark(self):
+        height = self.label_checkmark.height()
+        width = self.label_checkmark.width()
+        pixmap = QPixmap("./resource/UI/hideImage.png")
+        pixmap = pixmap.scaled(width, height, QtCore.Qt.KeepAspectRatio)
+        self.label_checkmark.setPixmap(pixmap)
+
 
     # TODO: 버튼 나열된거 꼴뵈기 싫으니까 최적화 할 필요 있음 (상속해서 한 클래스로 만들기??)
     @pyqtSlot()
@@ -274,6 +286,8 @@ class MainWindow(QMainWindow):
 
     def alphabetButtonClicked(self):
         button = self.sender()
+        self.hideCheckMark()
+        self.playProgress()
 
         objName = button.objectName()
         # I know it's a hack. get object name 'button_A' and slice to 'A'
@@ -283,6 +297,9 @@ class MainWindow(QMainWindow):
 
     def notifyModeChanged(self, modeName):
         global currentMode
+        global count
+        count = 0
+
         currentMode = modeName
         self.loadTutorialImageFromMode()
         self.statusBar().showMessage('현재 배우고 있는 문자는 {}입니다.'.format(modeName))
@@ -362,8 +379,10 @@ class ProgressThread(QThread):
 
     def run(self):
         TIME_LIMIT = 100
-        count = 0
-        while count <= TIME_LIMIT:
+        global count
+        # count = 0
+        while count < TIME_LIMIT:
+
 
             time.sleep(0.1)
             print(currentMode, recognizedResult)
