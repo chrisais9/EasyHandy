@@ -26,10 +26,13 @@ def fileSearch():
             fileEntry.append(file)
     return fileEntry
 
+
 '''
 predicator using Keras
 PyQt 의존성을 가져서는 안됨.
 '''
+
+
 def predictor():
     import numpy as np
     from tensorflow.keras.preprocessing import image
@@ -180,8 +183,6 @@ class MainWindow(QMainWindow):
         if value == 100:
             self.showCheckMark()
 
-
-
     def showCheckMark(self):
         height = self.label_checkmark.height()
         width = self.label_checkmark.width()
@@ -300,7 +301,7 @@ class MainWindow(QMainWindow):
         button = self.sender()
 
         objName = button.objectName()
-        # Convert 'button_A' -> 'A'
+        # I know it's a hack. get object name 'button_A' and slice to 'A'
         self.notifyModeChanged(objName[-1])
 
     """ 뷰 내의 모든 위젯은 이 함수를 호출해 Refresh 함 """
@@ -345,18 +346,14 @@ class MainWindow(QMainWindow):
 
             print(predictor())
 
-
-
         cap.release()
         cv2.destroyAllWindows()
 
     def saveToPredictor(self, frame):
 
+        # 손의 색상 HSV 값을 기반으로 inRange 로 이진화
         lower_blue = np.array([0, 58, 50])
         upper_blue = np.array([30, 255, 255])
-
-        # lower_blue = np.array([0, 10, 60])
-        # upper_blue = np.array([20, 150, 255])
 
         imcrop = frame[self.roiLeftTop[1]:self.roiRightBottom[1], self.roiLeftTop[0]:self.roiRightBottom[0]]
         hsv = cv2.cvtColor(imcrop, cv2.COLOR_BGR2HSV)
@@ -390,10 +387,9 @@ class ProgressThread(QThread):
             self.countChanged.emit(count)
 
 
+if __name__ == '__main__':
+    app = QApplication([])
+    window = MainWindow()
+    window.show()
 
-
-app = QApplication([])
-window = MainWindow()
-window.show()
-
-app.exec_()
+    app.exec_()
