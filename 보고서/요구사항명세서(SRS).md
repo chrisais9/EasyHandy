@@ -2,7 +2,10 @@
 
 ## 시스템 개요
 
+여기다가 개요 적기 
+이거 왜만드냐 뭐가 목적이냐 이걸로 인해 무슨 이득이 있냐 등등
 
+Use Cases Diagram
 ![](images/usecasediagram.jpg)
 
 ## 1. 기능적 요구사항
