@@ -55,19 +55,6 @@
      <string/>
     </property>
    </widget>
-   <widget class="QWidget" name="widget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>360</x>
-      <y>250</y>
-      <width>120</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgba(180,180,180,0.6)</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="button_B">
     <property name="geometry">
      <rect>
@@ -578,9 +565,24 @@
      <number>24</number>
     </property>
    </widget>
+   <widget class="QLabel" name="label_checkmark">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>781</width>
+      <height>341</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>label_camView</zorder>
    <zorder>label_tutorialView</zorder>
-   <zorder>widget</zorder>
    <zorder>button_B</zorder>
    <zorder>button_C</zorder>
    <zorder>button_D</zorder>
@@ -608,6 +610,7 @@
    <zorder>button_A</zorder>
    <zorder>button_Z</zorder>
    <zorder>progressBar</zorder>
+   <zorder>label_checkmark</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

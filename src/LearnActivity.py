@@ -26,10 +26,13 @@ def fileSearch():
             fileEntry.append(file)
     return fileEntry
 
-
+'''
+predicator using Keras
+PyQt 의존성을 가져서는 안됨.
+'''
 def predictor():
     import numpy as np
-    from keras.preprocessing import image
+    from tensorflow.keras.preprocessing import image
     test_image = image.load_img('1.png', target_size=(64, 64))
     test_image = image.img_to_array(test_image)
     test_image = np.expand_dims(test_image, axis=0)
@@ -120,7 +123,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
 
-        uic.loadUi('UI_Files/learn_activity.ui', self)
+        uic.loadUi('pyqt_UI/learn_activity.ui', self)
         self.setWindowTitle('EasyHandy')
 
         """ 현재 모드를 나타냄 ( 모든 로직은 이 변수를 이용해서 처리 ex. mode = A -> 튜토리얼 사진 show 'A' """
@@ -138,9 +141,9 @@ class MainWindow(QMainWindow):
         self.video_thread(MainWindow)
 
         # 뷰 띄운 다음 바로재생
-        self.calc = External()
-        self.calc.countChanged.connect(self.onCountChanged)
-        self.calc.start()
+        self.progressBarThread = ProgressThread()
+        self.progressBarThread.countChanged.connect(self.onCountChanged)
+        self.progressBarThread.start()
 
         # self.worker = Worker()
         # self.worker.start()
@@ -168,6 +171,16 @@ class MainWindow(QMainWindow):
 
     def onCountChanged(self, value):
         self.progressBar.setValue(value)
+        if value == 100:
+            self.showCheckMark()
+
+
+    def showCheckMark(self):
+        height = self.label_checkmark.height()
+        width = self.label_checkmark.width()
+        pixmap = QPixmap("./resource/UI/checkmark.png")
+        pixmap.scaled(width,height, QtCore.Qt.KeepAspectRatio)
+        self.label_checkmark.setPixmap(pixmap)
 
     # TODO: 버튼 나열된거 꼴뵈기 싫으니까 최적화 할 필요 있음 (상속해서 한 클래스로 만들기??)
     @pyqtSlot()
@@ -352,7 +365,7 @@ class MainWindow(QMainWindow):
         thread.start()
 
 
-class External(QThread):
+class ProgressThread(QThread):
     """
     Runs a counter thread.
     """
@@ -367,10 +380,9 @@ class External(QThread):
             self.countChanged.emit(count)
 
 
+
 app = QApplication([])
 window = MainWindow()
 window.show()
-
-# tensorProcess()
 
 app.exec_()

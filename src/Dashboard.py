@@ -194,7 +194,7 @@ class Dashboard(QtWidgets.QMainWindow):
             QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint | QtCore.Qt.FramelessWindowHint)
         self.setWindowIcon(QtGui.QIcon('icons/windowLogo.png'))
         self.title = 'Sign language Recognition'
-        uic.loadUi('UI_Files/dash.ui', self)
+        uic.loadUi('pyqt_UI/dash.ui', self)
         self.setWindowTitle(self.title)
         self.timer = QTimer()
         self.create.clicked.connect(self.createGest)
@@ -225,7 +225,7 @@ class Dashboard(QtWidgets.QMainWindow):
         except:
             pass
         gesname = ""
-        uic.loadUi('UI_Files/create_gest.ui', self)
+        uic.loadUi('pyqt_UI/create_gest.ui', self)
         self.setWindowTitle(self.title)
         self.create.clicked.connect(self.createGest)
         self.scan_sinlge.clicked.connect(self.scanSingle)
@@ -319,7 +319,7 @@ class Dashboard(QtWidgets.QMainWindow):
             clearfunc(self.cam)
         except:
             pass
-        uic.loadUi('UI_Files/scan_single.ui', self)
+        uic.loadUi('pyqt_UI/scan_single.ui', self)
         self.setWindowTitle(self.title)
         self.create.clicked.connect(self.createGest)
         self.exp2.clicked.connect(self.exportFile)
