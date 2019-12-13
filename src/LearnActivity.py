@@ -14,7 +14,7 @@ import time
 import sys
 import PyQt5
 
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 
 classifier = load_model('ASLModel.h5')  # loading the model
 
@@ -141,6 +141,13 @@ class MainWindow(QMainWindow):
         self.calc = External()
         self.calc.countChanged.connect(self.onCountChanged)
         self.calc.start()
+
+        # self.worker = Worker()
+        # self.worker.start()
+
+        # while(True):
+        #     time.sleep(1)
+        #     print(predictor())
 
         # label의 값을 조정하기위해서는 데이터 타입을 PyQt5.QtCore.QSize로 넘겨줘야 됨.
         # movie.setScaledSize(s) # PyQt5.QtCore.QSize(360, 270)로 넘겨줘도 됨.
@@ -316,6 +323,10 @@ class MainWindow(QMainWindow):
             self.label_camView.setPixmap(QPixmap.fromImage(qImg))
             self.label_camView.update()
 
+            print(predictor())
+
+
+
         cap.release()
         cv2.destroyAllWindows()
 
@@ -339,19 +350,6 @@ class MainWindow(QMainWindow):
         thread = threading.Thread(target=self.videoToFrame, args=(self,))
         thread.daemon = True  # 프로그램 종료시 프로세스도 함께 종료 (백그라운드 재생 X)
         thread.start()
-
-
-def tensorProcess():
-    while True:
-        time.sleep(1)
-        print(predictor())
-
-
-# tensorflow를 쓰레드로 사용
-def predict_thread():
-    thread = threading.Thread(target=tensorProcess)
-    thread.daemon = True  # 프로그램 종료시 프로세스도 함께 종료 (백그라운드 재생 X)
-    thread.start()
 
 
 class External(QThread):
