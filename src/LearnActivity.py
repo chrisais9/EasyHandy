@@ -128,6 +128,7 @@ class MainWindow(QMainWindow):
 
         uic.loadUi('pyqt_UI/learn_activity.ui', self)
         self.setWindowTitle('EasyHandy')
+        self.setWindowIcon(QIcon('icons/windowlogo.png'))
 
         """ 현재 모드를 나타냄 ( 모든 로직은 이 변수를 이용해서 처리 ex. mode = A -> 튜토리얼 사진 show 'A' """
         self.currentMode = 'A'
@@ -309,7 +310,7 @@ class MainWindow(QMainWindow):
     def notifyModeChanged(self, modeName):
         self.currentMode = modeName
         self.loadTutorialImageFromMode()
-        print('Mode Changed To {}'.format(self.currentMode))
+        self.statusBar().showMessage('현재 배우고 있는 문자는 {}입니다.'.format(modeName))
 
     """ label_tutorialView 에 현재 모드에 맞는 튜토리얼 이미지 삽입 """
 

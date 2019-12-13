@@ -50,13 +50,13 @@ train_datagen = ImageDataGenerator(
 test_datagen = ImageDataGenerator(rescale=1. / 255)
 
 training_set = train_datagen.flow_from_directory(
-    'mydata/training_set',
+    'trainData/training_set',
     target_size=(64, 64),
     batch_size=32,
     class_mode='categorical')
 
 test_set = test_datagen.flow_from_directory(
-    'mydata/test_set',
+    'trainData/test_set',
     target_size=(64, 64),
     batch_size=32,
     class_mode='categorical')
