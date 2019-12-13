@@ -8,8 +8,9 @@ from PyQt5 import uic, QtWidgets, QtGui, QtCore
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QSize, pyqtSlot
-
 from PyQt5.QtCore import QThread, pyqtSignal
+from PyQt5.QtGui import QKeySequence, QPalette, QColor
+from PyQt5.QtCore import Qt
 import time
 import sys
 import PyQt5
@@ -128,8 +129,26 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
 
         uic.loadUi('pyqt_UI/learn_activity.ui', self)
+
+        palette = QPalette()
+        palette.setColor(QPalette.Window, QColor(53, 53, 53))
+        palette.setColor(QPalette.WindowText, Qt.white)
+        palette.setColor(QPalette.Base, QColor(25, 25, 25))
+        palette.setColor(QPalette.AlternateBase, QColor(53, 53, 53))
+        palette.setColor(QPalette.ToolTipBase, Qt.white)
+        palette.setColor(QPalette.ToolTipText, Qt.white)
+        palette.setColor(QPalette.Text, Qt.white)
+        palette.setColor(QPalette.Button, QColor(53, 53, 53))
+        palette.setColor(QPalette.ButtonText, Qt.white)
+        palette.setColor(QPalette.BrightText, Qt.red)
+        palette.setColor(QPalette.Link, QColor(42, 130, 218))
+        palette.setColor(QPalette.Highlight, QColor(42, 130, 218))
+        palette.setColor(QPalette.HighlightedText, Qt.black)
+        self.setPalette(palette)
+
         self.setWindowTitle('EasyHandy')
         self.setWindowIcon(QIcon('icons/windowlogo.png'))
+        # self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
 
         """ 현재 모드를 나타냄 ( 모든 로직은 이 변수를 이용해서 처리 ex. mode = A -> 튜토리얼 사진 show 'A' """
         """ OnFirstRun """
