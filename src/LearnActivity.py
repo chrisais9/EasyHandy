@@ -142,8 +142,13 @@ class MainWindow(QMainWindow):
 
         # 뷰 띄운 다음 바로재생
         self.progressBarThread = ProgressThread()
+
+        # 이벤트 설정
         self.progressBarThread.countChanged.connect(self.onCountChanged)
+        # nowCurrentMode = pyqtSignal(str)
+        # self.progressBarThread.getCurrentMode.connect(self.onGetCurrentMode)
         self.progressBarThread.start()
+
 
         # self.worker = Worker()
         # self.worker.start()
@@ -169,10 +174,12 @@ class MainWindow(QMainWindow):
         # print(self.widget)
         # print(type(self.widget))
 
+
     def onCountChanged(self, value):
         self.progressBar.setValue(value)
         if value == 100:
             self.showCheckMark()
+
 
 
     def showCheckMark(self):
@@ -369,15 +376,19 @@ class ProgressThread(QThread):
     """
     Runs a counter thread.
     """
+    # 이벤트 전달하기위해서
     countChanged = pyqtSignal(int)
 
     def run(self):
         TIME_LIMIT = 100
         count = 0
-        while count <= TIME_LIMIT:
-            count += 10
-            time.sleep(1)
+        while count <= TIME_LIMIT :
+
+            time.sleep(0.1)
+            if 'Y' == predictor():
+                count += 2
             self.countChanged.emit(count)
+
 
 
 
