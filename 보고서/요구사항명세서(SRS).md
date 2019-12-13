@@ -3,7 +3,7 @@
 ## 시스템 개요
 
 
-![](src/resource/Image4md/usecasediagram.jpg)
+![](src/resource/Image4md/usecasediagram.jpeg)
 ## 1. 기능적 요구사항
 
 
