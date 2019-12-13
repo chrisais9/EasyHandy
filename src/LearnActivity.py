@@ -179,7 +179,7 @@ class MainWindow(QMainWindow):
         height = self.label_checkmark.height()
         width = self.label_checkmark.width()
         pixmap = QPixmap("./resource/UI/checkmark.png")
-        pixmap.scaled(width,height, QtCore.Qt.KeepAspectRatio)
+        pixmap = pixmap.scaled(width,height, QtCore.Qt.KeepAspectRatio)
         self.label_checkmark.setPixmap(pixmap)
 
     # TODO: 버튼 나열된거 꼴뵈기 싫으니까 최적화 할 필요 있음 (상속해서 한 클래스로 만들기??)
