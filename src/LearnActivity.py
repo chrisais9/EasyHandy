@@ -17,7 +17,8 @@ import PyQt5
 from tensorflow.keras.models import load_model
 
 classifier = load_model('ASLModel.h5')  # loading the model
-
+currentMode = 'A'
+recognizedResult = 'Z'
 
 def fileSearch():
     fileEntry = []
@@ -131,9 +132,8 @@ class MainWindow(QMainWindow):
         self.setWindowIcon(QIcon('icons/windowlogo.png'))
 
         """ 현재 모드를 나타냄 ( 모든 로직은 이 변수를 이용해서 처리 ex. mode = A -> 튜토리얼 사진 show 'A' """
-        self.currentMode = 'A'
         """ OnFirstRun """
-        self.notifyModeChanged(self.currentMode)
+        self.notifyModeChanged(currentMode)
         self.setTutorialButton()
 
         self.heightOfCamView = self.label_camView.height()
@@ -149,34 +149,8 @@ class MainWindow(QMainWindow):
 
         # 이벤트 설정
         self.progressBarThread.countChanged.connect(self.onCountChanged)
-        # nowCurrentMode = pyqtSignal(str)
-        # self.progressBarThread.getCurrentMode.connect(self.onGetCurrentMode)
         self.progressBarThread.start()
 
-
-        # self.worker = Worker()
-        # self.worker.start()
-
-        # while(True):
-        #     time.sleep(1)
-        #     print(predictor())
-
-        # label의 값을 조정하기위해서는 데이터 타입을 PyQt5.QtCore.QSize로 넘겨줘야 됨.
-        # movie.setScaledSize(s) # PyQt5.QtCore.QSize(360, 270)로 넘겨줘도 됨.
-        # self.label_3.setGeometry(0, 0, 780, 441) 아니면 이거 사용해도될듯.. 늦게 서야 봄..
-        # movie.setScaledSize(PyQt5.QtCore.QSize(360,270))
-
-        # self.label_imageView.setMovie(movie)
-        # movie.start()
-
-        # self.button_A = PicButton(QPixmap("./resource/alphabet/learn/A.png"))
-
-        # self.pushButton.setGeometry(0,0,300,300)
-        # self.widget.setIcon("./resource/alphabet/learn/A.png")
-
-        # QtGui.QIcon
-        # print(self.widget)
-        # print(type(self.widget))
 
 
     def onCountChanged(self, value):
@@ -308,18 +282,20 @@ class MainWindow(QMainWindow):
     """ 뷰 내의 모든 위젯은 이 함수를 호출해 Refresh 함 """
 
     def notifyModeChanged(self, modeName):
-        self.currentMode = modeName
+        global currentMode
+        currentMode = modeName
         self.loadTutorialImageFromMode()
         self.statusBar().showMessage('현재 배우고 있는 문자는 {}입니다.'.format(modeName))
 
     """ label_tutorialView 에 현재 모드에 맞는 튜토리얼 이미지 삽입 """
 
     def loadTutorialImageFromMode(self):
-        self.image = QPixmap("./resource/alphabet/learn/{}.png".format(self.currentMode))
+        self.image = QPixmap("./resource/alphabet/learn/{}.png".format(currentMode))
         self.image = self.image.scaled(300, 190)
         self.label_tutorialView.setPixmap(self.image)
 
     def videoToFrame(self, MainWindow):
+        global recognizedResult
         cap = cv2.VideoCapture(0)
 
         while True:
@@ -345,7 +321,8 @@ class MainWindow(QMainWindow):
             self.label_camView.setPixmap(QPixmap.fromImage(qImg))
             self.label_camView.update()
 
-            print(predictor())
+            # 인식된 텍스트 업데이트
+            self.updatePredictedResult()
 
         cap.release()
         cv2.destroyAllWindows()
@@ -362,6 +339,12 @@ class MainWindow(QMainWindow):
 
         save_img = cv2.resize(mask, (64, 64))
         cv2.imwrite('1.png', save_img)
+
+    def updatePredictedResult(self):
+        global recognizedResult
+        recognizedResult = predictor()
+        self.label_recognizedText.setText(recognizedResult)
+
 
     # video_to_frame을 쓰레드로 사용
     def video_thread(self, MainWindow):
@@ -380,10 +363,11 @@ class ProgressThread(QThread):
     def run(self):
         TIME_LIMIT = 100
         count = 0
-        while count <= TIME_LIMIT :
+        while count <= TIME_LIMIT:
 
             time.sleep(0.1)
-            if 'Y' == predictor():
+            print(currentMode, recognizedResult)
+            if currentMode == recognizedResult:
                 count += 2
             self.countChanged.emit(count)
 
