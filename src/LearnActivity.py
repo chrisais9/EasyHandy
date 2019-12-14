@@ -165,6 +165,7 @@ class MainWindow(QMainWindow):
         self.video_thread(MainWindow)
 
         self.playProgress()
+        self.label_doneTutorial.hide()
 
 
     def playProgress(self):
@@ -178,22 +179,19 @@ class MainWindow(QMainWindow):
     def onCountChanged(self, value):
         self.progressBar.setValue(value)
         if value == 100:
-            self.showCheckMark()
+            self.showDoneTutorial()
 
 
-    def showCheckMark(self):
-        height = self.label_checkmark.height()
-        width = self.label_checkmark.width()
-        pixmap = QPixmap("./resource/UI/checkmark.png")
+    def showDoneTutorial(self):
+        self.label_doneTutorial.show()
+        height = self.label_doneTutorial.height()
+        width = self.label_doneTutorial.width()
+        pixmap = QPixmap("./resource/UI/aftertutorial.png")
         pixmap = pixmap.scaled(width, height, QtCore.Qt.KeepAspectRatio)
-        self.label_checkmark.setPixmap(pixmap)
+        self.label_doneTutorial.setPixmap(pixmap)
 
     def hideCheckMark(self):
-        height = self.label_checkmark.height()
-        width = self.label_checkmark.width()
-        pixmap = QPixmap("./resource/UI/hideImage.png")
-        pixmap = pixmap.scaled(width, height, QtCore.Qt.KeepAspectRatio)
-        self.label_checkmark.setPixmap(pixmap)
+        self.label_doneTutorial.hide()
 
 
     # TODO: 버튼 나열된거 꼴뵈기 싫으니까 최적화 할 필요 있음 (상속해서 한 클래스로 만들기??)

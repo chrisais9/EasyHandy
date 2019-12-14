@@ -565,17 +565,17 @@
      <number>24</number>
     </property>
    </widget>
-   <widget class="QLabel" name="label_checkmark">
+   <widget class="QLabel" name="label_doneTutorial">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>50</y>
-      <width>781</width>
-      <height>341</height>
+      <x>0</x>
+      <y>40</y>
+      <width>801</width>
+      <height>371</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: transparent;</string>
+     <string notr="true">background-color: rgba(180,180,180,0.9);</string>
     </property>
     <property name="text">
      <string/>
@@ -678,7 +678,7 @@
    <zorder>button_A</zorder>
    <zorder>button_Z</zorder>
    <zorder>progressBar</zorder>
-   <zorder>label_checkmark</zorder>
+   <zorder>label_doneTutorial</zorder>
    <zorder>label</zorder>
    <zorder>groupBox_2</zorder>
   </widget>
