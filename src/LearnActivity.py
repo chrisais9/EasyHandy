@@ -325,7 +325,7 @@ class MainWindow(QMainWindow):
 
     def loadTutorialImageFromMode(self):
         self.image = QPixmap("./resource/alphabet/learn/{}.png".format(currentMode))
-        self.image = self.image.scaled(300, 190)
+        self.image = self.image.scaled(300, 190, Qt.IgnoreAspectRatio, Qt.SmoothTransformation)
         self.label_tutorialView.setPixmap(self.image)
 
     def videoToFrame(self, MainWindow):
