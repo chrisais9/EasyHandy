@@ -26,8 +26,8 @@
    <widget class="QLabel" name="label_tutorialView">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>50</y>
+      <x>480</x>
+      <y>150</y>
       <width>301</width>
       <height>191</height>
      </rect>
@@ -37,6 +37,9 @@
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_camView">

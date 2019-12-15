@@ -324,9 +324,9 @@ class MainWindow(QMainWindow):
     """ label_tutorialView 에 현재 모드에 맞는 튜토리얼 이미지 삽입 """
 
     def loadTutorialImageFromMode(self):
-        self.image = QPixmap("./resource/alphabet/learn/{}.png".format(currentMode))
-        self.image = self.image.scaled(300, 190, Qt.IgnoreAspectRatio, Qt.SmoothTransformation)
-        self.label_tutorialView.setPixmap(self.image)
+         self.image = QPixmap("./resource/alphabet/overlay_image/{}.png".format(currentMode))
+         self.image = self.image.scaled(180, 100, Qt.IgnoreAspectRatio, Qt.SmoothTransformation)
+         self.label_tutorialView.setPixmap(self.image)
 
     def videoToFrame(self, MainWindow):
         global recognizedResult
