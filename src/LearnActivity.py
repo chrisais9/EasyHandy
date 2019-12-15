@@ -187,7 +187,7 @@ class MainWindow(QMainWindow):
         height = self.label_doneTutorial.height()
         width = self.label_doneTutorial.width()
         pixmap = QPixmap("./resource/UI/aftertutorial.png")
-        pixmap = pixmap.scaled(width, height, QtCore.Qt.KeepAspectRatio)
+        pixmap = pixmap.scaled(width, height, QtCore.Qt.KeepAspectRatio, Qt.SmoothTransformation)
         self.label_doneTutorial.setPixmap(pixmap)
 
     def hideCheckMark(self):
