@@ -33,7 +33,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgba(180,180,180,0.6);</string>
+     <string notr="true">background-color: transparent;</string>
     </property>
     <property name="text">
      <string/>
@@ -653,7 +653,6 @@
    </widget>
    <zorder>groupBox</zorder>
    <zorder>label_camView</zorder>
-   <zorder>label_tutorialView</zorder>
    <zorder>button_B</zorder>
    <zorder>button_C</zorder>
    <zorder>button_D</zorder>
@@ -681,9 +680,10 @@
    <zorder>button_A</zorder>
    <zorder>button_Z</zorder>
    <zorder>progressBar</zorder>
-   <zorder>label_doneTutorial</zorder>
    <zorder>label</zorder>
    <zorder>groupBox_2</zorder>
+   <zorder>label_tutorialView</zorder>
+   <zorder>label_doneTutorial</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
