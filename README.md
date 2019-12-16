@@ -26,8 +26,7 @@
 
 - Python `3.7.0`
 - OpenCV `3.4.2.16`
-- pyqt5, tkinter
-- keyboard
+- pyqt5
 - tensorflow
 - keras
 - scipy
