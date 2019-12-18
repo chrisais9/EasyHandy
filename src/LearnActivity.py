@@ -190,7 +190,7 @@ class MainWindow(QMainWindow):
         pixmap = pixmap.scaled(width, height, QtCore.Qt.KeepAspectRatio, Qt.SmoothTransformation)
         self.label_doneTutorial.setPixmap(pixmap)
 
-    def hideCheckMark(self):
+    def hideDoneTutorial(self):
         self.label_doneTutorial.hide()
 
 
@@ -303,7 +303,7 @@ class MainWindow(QMainWindow):
 
     def alphabetButtonClicked(self):
         button = self.sender()
-        self.hideCheckMark()
+        self.hideDoneTutorial()
         self.playProgress()
 
         objName = button.objectName()
