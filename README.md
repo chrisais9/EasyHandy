@@ -17,6 +17,9 @@ Pyqt5 + OpenCV + CNN Deep Learning 을 활용
 ## UI 설명
 ![](img/ui.png)
 
+## 딥러닝 모델 (CNN 알고리즘)
+![](img/cnn.png)
+
 ## 보고서
 다음은 보고서 입니다. 프로그램에 대한 전반적인 설계와 명세가 들어가 있습니다.
 
