@@ -82,7 +82,7 @@ Use Cases Diagram
 ## 3. 비기능적 요구사항
 
 1. 이 소프트웨어의 구현에는 Pyhton3, OpenCV3, Tensorflow, Keras 를 이용한다.
-2. 
+2. TestBed 로 MacBook Pro (15-inch, 2018)을 사용한다.
 
 ## 프로젝트 수행 일정
 ![](images/process.png)
