@@ -1,4 +1,4 @@
-# 소프트웨어구조설계서(ADS)
+# 소프트웨어 구조 설계서(ADS)
 
 ## 전체 인프라 다이어그램
 ![](images/infra_diagram.png)
