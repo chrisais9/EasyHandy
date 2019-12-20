@@ -8,6 +8,8 @@
 
 <h4 align="center">🎰Learn sign languge easily! 🚀</h4>
 
+[![HitCount](http://hits.dwyl.io/chrisais9/chrisais9/EasyHandy.svg)](http://hits.dwyl.io/chrisais9/chrisais9/EasyHandy)
+
 ## What is EasyHandy?
 Pyqt5 + OpenCV + CNN Deep Learning 을 활용  
   
