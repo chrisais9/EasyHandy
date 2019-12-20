@@ -1,3 +1,4 @@
+[![HitCount](http://hits.dwyl.io/chrisais9/chrisais9/EasyHandy.svg)](http://hits.dwyl.io/chrisais9/chrisais9/EasyHandy)
 <h1 align="center">
   <br>
   <img src="https://is3-ssl.mzstatic.com/image/thumb/Purple113/v4/7e/ef/16/7eef161f-1ccf-f6e7-f20f-836ace2b1081/pr_source.png/320x0w.png" alt="Markdownify" width="200"></a>
@@ -8,7 +9,7 @@
 
 <h4 align="center">🎰Learn sign languge easily! 🚀</h4>
 
-[![HitCount](http://hits.dwyl.io/chrisais9/chrisais9/EasyHandy.svg)](http://hits.dwyl.io/chrisais9/chrisais9/EasyHandy)
+
 
 ## What is EasyHandy?
 Pyqt5 + OpenCV + CNN Deep Learning 을 활용  
