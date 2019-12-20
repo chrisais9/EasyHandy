@@ -1,3 +1,5 @@
+[![HitCount](http://hits.dwyl.io/chrisais9/chrisais9/EasyHandy.svg)](http://hits.dwyl.io/chrisais9/chrisais9/EasyHandy)
+![Language](https://img.shields.io/badge/language-Python-blue)
 <h1 align="center">
   <br>
   <img src="https://is3-ssl.mzstatic.com/image/thumb/Purple113/v4/7e/ef/16/7eef161f-1ccf-f6e7-f20f-836ace2b1081/pr_source.png/320x0w.png" alt="Markdownify" width="200"></a>
@@ -7,6 +9,8 @@
 </h1>
 
 <h4 align="center">🎰Learn sign languge easily! 🚀</h4>
+
+
 
 ## What is EasyHandy?
 Pyqt5 + OpenCV + CNN Deep Learning 을 활용  
@@ -29,6 +33,11 @@ Pyqt5 + OpenCV + CNN Deep Learning 을 활용
 - [단위테스트](보고서/단위테스트.md)
 - [통합테스트](보고서/통합테스트.md)
 - [테스트보고서](보고서/테스트보고서.md)
+
+## How to Run?
+
+1. install following libraries.
+2. Run LearnActivity.py!
 
 ## Install List
 
